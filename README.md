@@ -57,7 +57,7 @@ roslaunch turtlebot_navigation gmapping_demo.launch
 to sav map run
     
 ```bash
-rosrun map_server map_saver -f ~/map
+rosrun map_server map_saver -f /dev_ws/src/turtlebot_apps/turtlebot_navigation/maps/<name>
 ```
 
 for navigation run (map in launch file)
