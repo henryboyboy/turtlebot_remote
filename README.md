@@ -38,31 +38,50 @@ with Nvidia support (requires nvidia-docker2)
 ```
 Once inside the container, ake ownership of the workspace with
 
-```bash
+```
 sudo chown -R $USER /dev_ws
 ```
-
-### terminal 
-
-Terminator is installed in the container for multiple terminals launch terminator from the CLI inside the container. Run `terminator` to start.
-
-## navigation
-
-for gmapping run
-
+### Terminal(turtlebot nuc)
 ```bash
-roslaunch turtlebot_navigation gmapping_demo.launch
+ssh iaac@10.41.1.1
+cd turtlebot_robot
+.docker/run_user.sh
+roslaunch turtlebot_bringup iaac.launch
 ```
 
-to sav map run
-    
+### Terminal2(turtlebot_remote Local)
+```bash
+cd turtlebot_remote
+.docker/run_user.sh
+sudo chown -R YOURUSER /dev_ws
+terminator
+```
+### Terminator(Docker image)
+##Mapping
+1. To launch the robot in rviz
+```bash
+rviz
+```
+
+2. Launch gamapping
+```bash
+roslaunch turtlebot_navigation turtlebot_gmapping.launch
+```
+3. Teleoperation
+```bash
+roslaunch turtlebot_teleop keyboard_teleop.launch
+```
+4 To sav map 
 ```bash
 rosrun map_server map_saver -f /dev_ws/src/turtlebot_apps/turtlebot_navigation/maps/<name>
 ```
-
-for navigation run (map in launch file)
-
+##Navigation
+1. Change the map name in amcl_demo_iaac.launch
+2. Rviz(load the config)
+3. Launch the navigation node
 ```bash
 roslaunch turtlebot_navigation amcl_demo_iaac.launch
 ```
+4. Find the estimate pose
+5. Navigate to the target
 
